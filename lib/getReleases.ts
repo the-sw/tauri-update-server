@@ -10,15 +10,17 @@ export const getReleases = (assets: Array<any>, target: string, arch: string): a
     const targetExtension = extensions.filter((element) => target === element.target && arch === element.arch)[0];
     if (targetExtension) {
         assets.forEach((release) => {
-            if (release.name.endsWith(targetExtension.extension)) {
+            // if (release.name.endsWith(targetExtension.extension))
+                 {
                 data['url'] = release.browser_download_url;
                 data['assets_url'] = release.url
                 data['date'] = release.created_at;
-            } else {
-                if (process.env.SIGNATURE === 'true' && release.name.endsWith(targetExtension.extension + '.sig')) {
-                    data['assets'] = release.url;
-                }
-            }
+            } 
+            // else {
+            //     if (process.env.SIGNATURE === 'true' && release.name.endsWith(targetExtension.extension + '.sig')) {
+            //         data['assets'] = release.url;
+            //     }
+            // }
         });
     }
     return data;
